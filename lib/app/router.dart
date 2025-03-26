@@ -4,10 +4,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rickandmorty/views/app_view.dart';
-import 'package:rickandmorty/views/characters_views.dart';
-import 'package:rickandmorty/views/favourites_view.dart';
-import 'package:rickandmorty/views/locations_view.dart';
-import 'package:rickandmorty/views/sections_views.dart';
+import 'package:rickandmorty/views/screens/characters_view/characters_views.dart';
+import 'package:rickandmorty/views/screens/favourites_view/favourites_view.dart';
+import 'package:rickandmorty/views/screens/locations_view/locations_view.dart';
+import 'package:rickandmorty/views/screens/section_view/sections_views.dart';
 
 final _routerKey =
     GlobalKey<
