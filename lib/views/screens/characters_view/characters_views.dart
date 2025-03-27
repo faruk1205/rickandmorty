@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rickandmorty/views/widgets/character_cardview.dart';
 
-class CharactersViews extends StatelessWidget {
-  const CharactersViews({super.key});
+import 'characters_viewmodel.dart';
+
+class CharactersView extends StatefulWidget {
+  const CharactersView({super.key});
+
+  @override
+  State<CharactersView> createState() => _CharactersViewState();
+}
+
+class _CharactersViewState extends State<CharactersView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<CharactersViewModel>().getCharacters();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,21 +27,29 @@ class CharactersViews extends StatelessWidget {
           child: Column(
             children: [
               _searchInputWidget(context),
-              const CharacterCardview(
-                image:
-                    'https://rickandmortyapi.com/api/character/avatar/337.jpeg',
-                name: 'Rick Sanchez',
-                origin: 'Earth - (C137)',
-                status: 'Yaşıyor',
-                type: 'insan',
-              ),
-              const CharacterCardview(
-                image:
-                    'https://rickandmortyapi.com/api/character/avatar/337.jpeg',
-                name: 'Rick Sanchez',
-                origin: 'Earth - (C137)',
-                status: 'Yaşıyor',
-                type: 'insan',
+              Consumer<CharactersViewModel>(
+                builder: (context, viewModel, child) {
+                  if (viewModel.charactersModel == null) {
+                    return const CircularProgressIndicator.adaptive();
+                  } else {
+                    return Flexible(
+                      child: ListView.builder(
+                        itemCount:
+                            viewModel
+                                .charactersModel!
+                                .characters
+                                .length, //bu liste içindeki eleman sayısını vermek zorundayız
+                        itemBuilder: (context, index) {
+                          final characterModel =
+                              viewModel.charactersModel!.characters[index];
+                          return CharacterCardview(
+                            characterModel: characterModel,
+                          );
+                        },
+                      ),
+                    );
+                  }
+                },
               ),
             ],
           ),
