@@ -62,7 +62,7 @@ class CharacterModel {
   final String image;
   final Origin origin;
   final Location
-  location; //Location isminde yeni bir model oluşturup(sonradan),location isminde tanımladık
+  location; //Location isminde yeni bir model oluşturup(sonradan),location isminde tanımladıkk
   final List<String>
   episodes; // bu liste olarak geldiği için liste ayptık. veriler string değilde model gibi gelseydi String yerine model ismi gelicekti (yukardakine benziyor
 
